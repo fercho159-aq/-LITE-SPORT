@@ -24,20 +24,22 @@ function Trophy() {
         {/* Base */}
         <mesh position={[0, -1.2, 0]}>
           <cylinderGeometry args={[0.8, 1, 0.3, 32]} />
-          <meshStandardMaterial color="#D4AF37" metalness={0.9} roughness={0.1} />
+          <meshStandardMaterial color="#D4AF37" emissive="#D4AF37" emissiveIntensity={0.4} metalness={0.7} roughness={0.2} />
         </mesh>
         {/* Stem */}
         <mesh position={[0, -0.5, 0]}>
           <cylinderGeometry args={[0.15, 0.3, 1, 16]} />
-          <meshStandardMaterial color="#D4AF37" metalness={0.9} roughness={0.1} />
+          <meshStandardMaterial color="#D4AF37" emissive="#D4AF37" emissiveIntensity={0.4} metalness={0.7} roughness={0.2} />
         </mesh>
         {/* Cup */}
         <mesh position={[0, 0.5, 0]}>
           <cylinderGeometry args={[0.6, 0.3, 1.2, 32, 1, true]} />
           <meshStandardMaterial
             color="#D4AF37"
-            metalness={0.9}
-            roughness={0.1}
+            emissive="#D4AF37"
+            emissiveIntensity={0.4}
+            metalness={0.7}
+            roughness={0.2}
             side={THREE.DoubleSide}
           />
         </mesh>
@@ -47,8 +49,8 @@ function Trophy() {
           <meshStandardMaterial
             color="#00D4FF"
             emissive="#00D4FF"
-            emissiveIntensity={0.5}
-            metalness={0.8}
+            emissiveIntensity={0.8}
+            metalness={0.6}
             roughness={0.2}
           />
         </mesh>
@@ -60,9 +62,10 @@ function Trophy() {
 function TrophyScene() {
   return (
     <>
-      <ambientLight intensity={0.4} />
-      <pointLight position={[5, 5, 5]} intensity={1} color="#D4AF37" />
-      <pointLight position={[-5, -3, 3]} intensity={0.5} color="#00D4FF" />
+      <ambientLight intensity={0.8} />
+      <pointLight position={[5, 5, 5]} intensity={2} color="#D4AF37" />
+      <pointLight position={[-5, -3, 3]} intensity={1.5} color="#00D4FF" />
+      <pointLight position={[0, 3, 3]} intensity={1} color="#FFFFFF" />
       <Trophy />
     </>
   );
@@ -174,15 +177,7 @@ export default function Contacto() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* 3D Trophy */}
-          <div className="h-[400px] md:h-[500px] hidden lg:block">
-            <Canvas camera={{ position: [0, 0, 4], fov: 50 }} dpr={[1, 2]}>
-              <TrophyScene />
-            </Canvas>
-          </div>
-
-          {/* Form */}
+        <div className="max-w-2xl mx-auto">
           {sent ? (
             <div className="glass neon-border-gold rounded-lg p-8 text-center">
               <div className="font-display text-4xl text-gradient-gold tracking-wider mb-4">

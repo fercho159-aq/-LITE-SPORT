@@ -1,19 +1,16 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import { useLoaderStore } from '@/lib/store';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
 export default function Loader() {
-  const { isLoading, setProgress, setLoading } = useLoaderStore();
   const containerRef = useRef<HTMLDivElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
   const counterRef = useRef<HTMLSpanElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
+  const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
-    if (!isLoading) return;
-
     const tl = gsap.timeline();
     const obj = { val: 0 };
 
@@ -23,7 +20,6 @@ export default function Loader() {
       ease: 'power2.inOut',
       onUpdate: () => {
         const v = Math.round(obj.val);
-        setProgress(v);
         if (counterRef.current) counterRef.current.textContent = `${v}%`;
         if (progressBarRef.current) progressBarRef.current.style.width = `${v}%`;
       },
@@ -41,15 +37,15 @@ export default function Loader() {
           duration: 0.8,
           delay: 0.6,
           ease: 'power4.inOut',
-          onComplete: () => setLoading(false),
+          onComplete: () => setHidden(true),
         });
       },
     });
 
     return () => { tl.kill(); };
-  }, [isLoading, setProgress, setLoading]);
+  }, []);
 
-  if (!isLoading) return null;
+  if (hidden) return null;
 
   return (
     <div

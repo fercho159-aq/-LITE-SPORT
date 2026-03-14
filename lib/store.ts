@@ -49,17 +49,3 @@ export const useCartStore = create<CartStore>((set, get) => ({
   totalItems: () => get().items.reduce((acc, i) => acc + i.quantity, 0),
   subtotal: () => get().items.reduce((acc, i) => acc + i.price * i.quantity, 0),
 }));
-
-interface LoaderStore {
-  isLoading: boolean;
-  progress: number;
-  setProgress: (p: number) => void;
-  setLoading: (l: boolean) => void;
-}
-
-export const useLoaderStore = create<LoaderStore>((set) => ({
-  isLoading: true,
-  progress: 0,
-  setProgress: (progress) => set({ progress }),
-  setLoading: (isLoading) => set({ isLoading }),
-}));
