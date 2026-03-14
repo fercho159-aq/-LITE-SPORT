@@ -138,7 +138,7 @@ export default function Hero() {
   const ctaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const tl = gsap.timeline({ delay: 3.2 });
+    const tl = gsap.timeline({ delay: 2.8 });
 
     if (headlineRef.current) {
       const text = headlineRef.current.innerText;
@@ -201,8 +201,8 @@ export default function Hero() {
 
         <p
           ref={subRef}
-          className="mt-6 text-lg md:text-xl text-foreground/80 font-body max-w-2xl leading-relaxed"
-          style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}
+          className="mt-6 text-lg md:text-xl text-white font-body max-w-2xl leading-relaxed"
+          style={{ textShadow: '0 2px 20px rgba(0,0,0,1), 0 0 40px rgba(0,0,0,0.8)' }}
         >
           Eventos deportivos de alto rendimiento para atletas que exigen excelencia.
           Experimenta la competencia al máximo nivel.
@@ -213,7 +213,7 @@ export default function Hero() {
             onMouseMove={handleMagnetic}
             onMouseLeave={handleMagneticLeave}
             onClick={() => document.querySelector('#eventos')?.scrollIntoView({ behavior: 'smooth' })}
-            className="magnetic-btn px-8 py-4 bg-gold text-background font-display text-lg tracking-widest hover:bg-gold-light transition-colors"
+            className="magnetic-btn px-8 py-4 bg-gold text-background font-display text-lg tracking-widest hover:bg-gold-light transition-colors shadow-lg shadow-gold/20"
           >
             VER EVENTOS
           </button>
@@ -221,7 +221,7 @@ export default function Hero() {
             onMouseMove={handleMagnetic}
             onMouseLeave={handleMagneticLeave}
             onClick={() => document.querySelector('#contacto')?.scrollIntoView({ behavior: 'smooth' })}
-            className="magnetic-btn px-8 py-4 border border-gold/40 text-gold font-display text-lg tracking-widest hover:bg-gold/10 transition-colors"
+            className="magnetic-btn px-8 py-4 border-2 border-gold text-gold font-display text-lg tracking-widest hover:bg-gold/10 transition-colors"
           >
             CONTACTAR
           </button>

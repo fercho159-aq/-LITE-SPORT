@@ -1,75 +1,11 @@
 'use client';
 
 import { useRef, useEffect, useState, useCallback } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Float } from '@react-three/drei';
-import * as THREE from 'three';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import confetti from 'canvas-confetti';
 
 gsap.registerPlugin(ScrollTrigger);
-
-function Trophy() {
-  const groupRef = useRef<THREE.Group>(null);
-
-  useFrame((state) => {
-    if (!groupRef.current) return;
-    groupRef.current.rotation.y = state.clock.elapsedTime * 0.5;
-  });
-
-  return (
-    <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.8}>
-      <group ref={groupRef}>
-        {/* Base */}
-        <mesh position={[0, -1.2, 0]}>
-          <cylinderGeometry args={[0.8, 1, 0.3, 32]} />
-          <meshStandardMaterial color="#D4AF37" emissive="#D4AF37" emissiveIntensity={0.4} metalness={0.7} roughness={0.2} />
-        </mesh>
-        {/* Stem */}
-        <mesh position={[0, -0.5, 0]}>
-          <cylinderGeometry args={[0.15, 0.3, 1, 16]} />
-          <meshStandardMaterial color="#D4AF37" emissive="#D4AF37" emissiveIntensity={0.4} metalness={0.7} roughness={0.2} />
-        </mesh>
-        {/* Cup */}
-        <mesh position={[0, 0.5, 0]}>
-          <cylinderGeometry args={[0.6, 0.3, 1.2, 32, 1, true]} />
-          <meshStandardMaterial
-            color="#D4AF37"
-            emissive="#D4AF37"
-            emissiveIntensity={0.4}
-            metalness={0.7}
-            roughness={0.2}
-            side={THREE.DoubleSide}
-          />
-        </mesh>
-        {/* Star on top */}
-        <mesh position={[0, 1.4, 0]} rotation={[0, 0, Math.PI / 10]}>
-          <octahedronGeometry args={[0.25, 0]} />
-          <meshStandardMaterial
-            color="#00D4FF"
-            emissive="#00D4FF"
-            emissiveIntensity={0.8}
-            metalness={0.6}
-            roughness={0.2}
-          />
-        </mesh>
-      </group>
-    </Float>
-  );
-}
-
-function TrophyScene() {
-  return (
-    <>
-      <ambientLight intensity={0.8} />
-      <pointLight position={[5, 5, 5]} intensity={2} color="#D4AF37" />
-      <pointLight position={[-5, -3, 3]} intensity={1.5} color="#00D4FF" />
-      <pointLight position={[0, 3, 3]} intensity={1} color="#FFFFFF" />
-      <Trophy />
-    </>
-  );
-}
 
 interface FormErrors {
   nombre?: string;
